@@ -393,6 +393,13 @@
       "address": "0x6F89660fEf8B6a03a41E5F3d0306645BE2469eFE",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "Gain",
+      "symbol": "GAIN",
+      "address": "0xaac073847e989c6d9d2f115a69e57a024415c684",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }

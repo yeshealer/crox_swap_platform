@@ -2,7 +2,7 @@
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useWeb3React } from "@web3-react/core";
-import { injected, walletconnect } from "connectors";
+import { injected, walletconnect, bsc } from "connectors";
 import {
   Menu as UikitMenu,
   Button as UiKitButton,
@@ -144,6 +144,9 @@ const Header = (props) => {
     if (connectorId === "walletconnect") {
       return activate(walletconnect);
     }
+    if (connectorId === "bsc") {
+      return activate(bsc);
+    }
     return activate(injected);
   };
 
@@ -168,23 +171,24 @@ const Header = (props) => {
                 } catch (switchError: any) {
                 if (switchError.code === 4902) {
                     try {
-                    await ethereum.request({
-                        method: "wallet_addEthereumChain",
-                        params: [
-                        {
-                            chainId: "0x38",
-                            chainName: "Binance Smart Chain",
-                            nativeCurrency: {
-                            name: "BNB",
-                            symbol: "BNB",
-                            decimals: 18,
-                            },
-                            rpcUrls: [getRpcUrl()],
-                            blockExplorerUrls: ["https://bscscan.com/"],
-                        },
-                        ],
-                    });
+                      await ethereum.request({
+                          method: "wallet_addEthereumChain",
+                          params: [
+                          {
+                              chainId: "0x38",
+                              chainName: "Binance Smart Chain",
+                              nativeCurrency: {
+                              name: "BNB",
+                              symbol: "BNB",
+                              decimals: 18,
+                              },
+                              rpcUrls: [getRpcUrl()],
+                              blockExplorerUrls: ["https://bscscan.com/"],
+                          },
+                          ],
+                      });
                     } catch (addError: any) {
+                      console.log("++++++++")
                     console.error(addError);
                     }
                 }
