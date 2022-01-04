@@ -26,8 +26,10 @@ import {
 import styled from "styled-components";
 import config from "./config";
 import "@szhsin/react-menu/dist/index.css";
+import SideBar from "./sidebar";
 import useCroxPrice from "hooks/useCroxPrice";
 import getRpcUrl from "utils/getRpcUrl";
+import "./mobileMenu.css";
 
 
 const StyledMenu = styled(Menu)`
@@ -65,6 +67,16 @@ const StyledSubMenu = styled(SubMenu)`
   background-color: #121827;
 `;
 
+const ConnectButton = styled(Button)`
+  margin-left: 16px;
+  padding: 9px 16px;
+  background-color: #3B3C4E;
+  color: white;
+  font-size: 14px;
+  border-radius: 20px;
+  z-index: 1;
+`
+
 const StyledButton = styled(Button)`
   background-color: transparent;
   color: white;
@@ -100,17 +112,6 @@ const StyledDropDown = styled(Dropdown)`
   }
 `;
 
-const StyledDropDownItem = styled(DropdownItem)`
-  background-color: #121827;
-  border: none;
-  padding: 30px 20px;
-  &:hover {
-    background-color: #0498aec7;
-  }
-  & .itemContainer {
-    background-color: #121827;
-  border: none;
-  `;
 
 const StyledDropDownMenuItem = styled(Dropdown)`
   // background-color: transparent;
@@ -133,6 +134,95 @@ const StyledDropDownMenuItem = styled(Dropdown)`
     background-color: #121827;
   border: none;
 `;
+
+const SwitchNetButton = styled(Button)`
+  margin: 0 24px;
+  padding: 0;
+  align-items: center;
+  display: flex;
+  background-color: #2C2D3A;
+  color: white;
+  border-radius: 20px;
+  font-size: 14px;
+  img {
+    margin-left: 4px;
+  }
+  z-index: 0;
+`
+
+const NetworkMenu = styled(Menu)`
+  width: 30px;
+  background-color: #2c2d3a;
+  top: 0;
+  & .networkDropDown {
+    padding: 0 5px;
+  }
+  & svg {
+    display: none;
+  }
+`
+
+const StyledDropDownNetwork = styled(Dropdown)`
+  background-color: transparent;
+  color: white;
+  box-sizing: border-box;
+  border-top: none;
+  box-sizing: border-box;
+  padding: 0px 30px;
+  font-size: 14px;
+  font-weight: 100;
+  &:hover {
+    background-color: transparent;
+    border-top: none;
+  }
+  & .itemContainer {
+    margin-left: -25px;
+    margin-top: 10px;
+    background-color:  #23242F;
+    border: none;
+    border-radius: 8px;
+  }
+  `
+
+const StyledDropDownGroup = styled.div`
+  padding: 8px 0;
+  background-color: #23242F;
+  border-radius: 8px;
+  & .swap {
+    padding: 16px;
+    display: flex;
+  }
+  & .liquidity {
+    padding: 16px;
+    display: flex;
+  }
+`
+
+const StyledDropDownItem = styled(DropdownItem)`
+  background-color:  #23242F;
+  width: 250px;
+  border: none;
+  padding: 30px 20px;
+  &:hover {
+    background-color: #2C2D3A;;
+    .changeText {
+      color: #0177FB;
+    }
+  }
+  `
+
+const StyledDropDownNetworkItem = styled(DropdownItem)`
+  background-color:  #23242F;
+  width: 187px;
+  border: none;
+  padding: 30px 20px;
+  &:hover {
+    background-color: #2C2D3A;;
+    .changeText {
+      color: #0177FB;
+    }
+  }
+  `
 
 let IsConnectConfirm = false;
 
@@ -233,91 +323,11 @@ const Header = (props) => {
             <a href="https://app.croxswap.com/pools/crox">Pools</a>
           </StyledButton>
           <StyledButton className="button">
-            <a href="https://bridge.croxswap.com">Bridge</a>
+            <a href="https://bridge.croxswap.com">Bridge(Soon)</a>
           </StyledButton>
           <StyledButton className="button">
             <a href="https://referral.croxswap.com">Referral</a>
           </StyledButton>
-          <StyledDropDown
-            label="Audits"
-            className="dropdown itemContainer"
-            itemsClassName="itemContainer"
-          >
-            <StyledDropDownItem className="menu-item">
-              <a href="https://github.com/TechRate/Smart-Contract-Audits/blob/main/Crox%20Final.pdf">
-                Techrate
-              </a>
-            </StyledDropDownItem>
-            <StyledDropDownItem className="menu-item">
-              Certik
-              <br />
-              (Soon)
-            </StyledDropDownItem>
-          </StyledDropDown>
-          <StyledDropDown
-            label="More"
-            className="dropdown itemContainer"
-            itemsClassName="itemContainer"
-          >
-            <StyledDropDownItem className="menu-item">
-              <a href="https://docs.croxswap.com">Docs</a>
-            </StyledDropDownItem>
-            <StyledDropDownMenuItem
-              label="Charts"
-              direction="right"
-              className="menu-item itemContainer"
-              itemsClassName="itemContainer"
-            >
-              <StyledDropDownItem className="menu-item">
-                <a href="https://dex.guru/token/0x2c094f5a7d1146bb93850f629501eb749f6ed491-bsc">
-                  DexGuru
-                </a>
-              </StyledDropDownItem>
-              <StyledDropDownItem className="menu-item">
-                <a href="https://poocoin.app/tokens/0x2c094f5a7d1146bb93850f629501eb749f6ed491">
-                  Poocoin
-                </a>
-              </StyledDropDownItem>
-              <StyledDropDownItem className="menu-item">
-                <a href="https://charts.bogged.finance/?token=0x2c094F5A7D1146BB93850f629501eB749f6Ed491">
-                  BogCharts
-                </a>
-              </StyledDropDownItem>
-            </StyledDropDownMenuItem>
-            <StyledDropDownMenuItem
-              label="Listings"
-              direction="right"
-              className="menu-item itemContainer"
-              itemsClassName="itemContainer"
-            >
-              <StyledDropDownItem className="menu-item">
-                <a href="https://pancakeswap.info/token/0x2c094f5a7d1146bb93850f629501eb749f6ed491">
-                  PancakeSwap
-                </a>
-              </StyledDropDownItem>
-              <StyledDropDownItem className="menu-item">
-                <a href="https://coinmarketcap.com/currencies/croxswap/">
-                  CoinMarketCap
-                </a>
-              </StyledDropDownItem>
-              <StyledDropDownItem className="menu-item">
-                <a href="https://www.coingecko.com/en/coins/croxswap">
-                  Coingecko
-                </a>
-              </StyledDropDownItem>
-              <StyledDropDownItem className="menu-item">
-                <a href="https://bscscan.com/token/0x2c094f5a7d1146bb93850f629501eb749f6ed491">
-                  BscScan
-                </a>
-              </StyledDropDownItem>
-            </StyledDropDownMenuItem>
-            <StyledDropDownItem className="menu-item">
-              <a href="https://github.com/croxswap">Github</a>
-            </StyledDropDownItem>
-            <StyledDropDownItem className="menu-item">
-              <a href="https://croxswap.medium.com/">Blog</a>
-            </StyledDropDownItem>
-          </StyledDropDown>
 
           <Separator />
 
@@ -346,129 +356,9 @@ const Header = (props) => {
       ) : (
         <StyledMobileMenu>
           <div style={{ display: "flex", alignItems: "center" }}>
-            <MobileMenu
-              styles={{ backgroundColor: "#121827" }}
-              menuButton={
-                <div
-                  style={{
-                    padding: "4px 8px",
-                    background: "#0498aec7",
-                    color: "white",
-                    borderRadius: 5,
-                    fontSize: 24,
-                    cursor: "pointer",
-                  }}
-                >
-                  <RiMenu2Line />
-                </div>
-              }
-            >
-              <StyledMenuItem href="https://app.croxswap.com/">
-                Home
-              </StyledMenuItem>
-              <StyledSubMenu
-                label="Trade"
-                itemStyles={{
-                  color: "white",
-                  padding: "20px 20px",
-                  background: "transparent",
-                  hover: { background: "#0498aec7" },
-                }}
-              >
-                <StyledMenuItem href="https://exchange.croxswap.com/#/swap">
-                  Swap
-                </StyledMenuItem>
-                <StyledMenuItem href="https://exchange.croxswap.com/#/pool">
-                  Liquidity
-                </StyledMenuItem>
-              </StyledSubMenu>
-              <StyledMenuItem href="https://app.croxswap.com/farms">
-                Farms
-              </StyledMenuItem>
-              <StyledMenuItem href="https://app.croxswap.com/pools/crox">
-                Pools
-              </StyledMenuItem>
-              <StyledMenuItem href="https://bridge.croxswap.com">
-                Bridge
-              </StyledMenuItem>
-              <StyledMenuItem href="https://referral.croxswap.com">
-                Referral
-              </StyledMenuItem>
-              <StyledSubMenu
-                label="Audits"
-                itemStyles={{
-                  color: "white",
-                  padding: "20px 20px",
-                  background: "transparent",
-                  hover: { background: "#0498aec7" },
-                }}
-              >
-                <StyledMenuItem href="https://github.com/TechRate/Smart-Contract-Audits/blob/main/Crox%20Final.pdf">
-                  Techrate
-                </StyledMenuItem>
-                <StyledMenuItem>Certik(Soon)</StyledMenuItem>
-              </StyledSubMenu>
-              <StyledSubMenu
-                label="More"
-                itemStyles={{
-                  color: "white",
-                  padding: "20px 20px",
-                  background: "transparent",
-                  hover: { background: "#0498aec7" },
-                }}
-              >
-                <StyledMenuItem href="https://docs.croxswap.com">
-                  Docs
-                </StyledMenuItem>
-                <StyledSubMenu
-                  label="Charts"
-                  itemStyles={{
-                    color: "white",
-                    padding: "20px 20px",
-                    background: "transparent",
-                    hover: { background: "#0498aec7" },
-                  }}
-                >
-                  <StyledMenuItem href="https://dex.guru/token/0x2c094f5a7d1146bb93850f629501eb749f6ed491-bsc">
-                    DexGuru
-                  </StyledMenuItem>
-                  <StyledMenuItem href="https://poocoin.app/tokens/0x2c094f5a7d1146bb93850f629501eb749f6ed491">
-                    Poocoin
-                  </StyledMenuItem>
-                  <StyledMenuItem href="https://charts.bogged.finance/?token=0x2c094F5A7D1146BB93850f629501eB749f6Ed491">
-                    BogCharts
-                  </StyledMenuItem>
-                </StyledSubMenu>
-                <StyledSubMenu
-                  label="Listings"
-                  itemStyles={{
-                    color: "white",
-                    padding: "20px 20px",
-                    background: "transparent",
-                    hover: { background: "#0498aec7" },
-                  }}
-                >
-                  <StyledMenuItem href="https://pancakeswap.info/token/0x2c094f5a7d1146bb93850f629501eb749f6ed491">
-                    Pancakeswap
-                  </StyledMenuItem>
-                  <StyledMenuItem href="https://coinmarketcap.com/currencies/croxswap/">
-                    CoinMarketCap
-                  </StyledMenuItem>
-                  <StyledMenuItem href="https://www.coingecko.com/en/coins/croxswap">
-                    Coingecko
-                  </StyledMenuItem>
-                  <StyledMenuItem href="https://bscscan.com/token/0x2c094f5a7d1146bb93850f629501eb749f6ed491">
-                    BscScan
-                  </StyledMenuItem>
-                </StyledSubMenu>
-                <StyledMenuItem href="https://github.com/croxswap">
-                  Github
-                </StyledMenuItem>
-                <StyledMenuItem href="https://croxswap.medium.com">
-                  Blog
-                </StyledMenuItem>
-              </StyledSubMenu>
-            </MobileMenu>
+             <div id="App">
+              <SideBar pageWrapId={"page-wrap"} outerContainerId={"App"} />
+            </div>
             <img
               src="/logo1.png"
               width="120px"
@@ -495,50 +385,3 @@ const Header = (props) => {
 };
 
 export default Header;
-
-// <Menu className="menu">
-//   <img src="/logo1.png" width="120px" style={{ margin: "8px 14px", marginRight: "80px" }} />
-//   <Dropdown label="X" className="dropdown">
-//     <DropdownItem className="menu-item"><a href="/">Home</Link></DropdownItem>
-
-//     <Dropdown label="Trade" className="menu-item" direction="right" itemsClassName="itemContainer">
-//       <DropdownItem className="menu-item">Swap</DropdownItem>
-//       <DropdownItem className="menu-item">Liquidity</DropdownItem>
-//     </Dropdown>
-
-//     <DropdownItem className="menu-item"><Link href="/farms">Farms</Link></DropdownItem>
-
-//     <Dropdown label="Pools" className="menu-item" direction="right" itemsClassName="itemContainer">
-//       <DropdownItem className="menu-item"><Link href="/pools">CROX Pools</Link></DropdownItem>
-//       <DropdownItem className="menu-item">Charity Pools<br />(Soon)</DropdownItem>
-//       <DropdownItem className="menu-item">Rasta Pool<br />(Soon)</DropdownItem>
-//       <DropdownItem className="menu-item">Polarisdefi</DropdownItem>
-//     </Dropdown>
-
-//     <DropdownItem className="menu-item"><Link href="/bridge">CROX Bridge</Link></DropdownItem>
-
-//     <Dropdown label="Audits" className="menu-item" direction="right" itemsClassName="itemContainer">
-//       <DropdownItem className="menu-item">Techrate</DropdownItem>
-//       <DropdownItem className="menu-item">Certik<br />(Soon)</DropdownItem>
-//     </Dropdown>
-
-//     <Dropdown label="More" className="menu-item" direction="right" itemsClassName="itemContainer">
-//       <DropdownItem className="menu-item">Docs</DropdownItem>
-//       <Dropdown label="Charts" direction="right" className="menu-item" itemsClassName="itemContainer">
-//         <DropdownItem className="menu-item">DexGuru</DropdownItem>
-//         <DropdownItem className="menu-item">Poocoin<br />(Soon)</DropdownItem>
-//         <DropdownItem className="menu-item">Bogged Finance</DropdownItem>
-//       </Dropdown>
-//       <DropdownItem className="menu-item">Listings</DropdownItem>
-//       <DropdownItem className="menu-item">Github</DropdownItem>
-//       <DropdownItem className="menu-item">Blog</DropdownItem>
-//     </Dropdown>
-//   </Dropdown>
-
-//   <Separator />
-
-//   <div style={{ display: "flex", alignItems: "center" }}>
-//     <span style={{ color: "white", padding: "10px", background: "#253253", marginRight: "20px", borderRadius: '8px' }}>$CROX: $20.62</span>
-//     <UiKitButton onClick={onPresentConnectModal}>Connect</UiKitButton>
-//   </div>
-// </Menu>

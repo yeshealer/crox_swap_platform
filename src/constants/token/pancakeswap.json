@@ -22,8 +22,7 @@
       "symbol": "RASTA",
       "address": "0xE3e8cC42DA487d1116D26687856e9FB684817c52",
       "chainId": 56,
-      "decimals": 18,
-      "logoURI": "/images/coins/RASTA.png"
+      "decimals": 18
     },
     {
       "name": "Goose Golden Egg",
@@ -44,8 +43,7 @@
       "symbol": "WBNB",
       "address": "0xae13d989dac2f0debff460ac112a837c89baa7cd",
       "chainId": 97,
-      "decimals": 18,
-      "logoURI": "/images/coins/BUSD.png"
+      "decimals": 18
     },
     {
       "name": "WBNB Token",
@@ -59,8 +57,7 @@
       "symbol": "BUSD",
       "address": "0x615446C0Fd5eA8A5FD7fb763f3FC2C58774474F3",
       "chainId": 97,
-      "decimals": 18,
-      "logoURI": "/images/coins/BTC.png"
+      "decimals": 18
     },
     {
       "name": "Bakery Token",
@@ -395,9 +392,37 @@
       "decimals": 18
     },
     {
+      "name": "Wrapped SOW",
+      "symbol": "WSOW",
+      "address": "0xe70D287AaD130e2Cee520e75d12C6efa4f1A377d",
+      "chainId": 56,
+      "decimals": 18
+    },
+    {
       "name": "Gain",
       "symbol": "GAIN",
       "address": "0xaac073847e989c6d9d2f115a69e57a024415c684",
+      "chainId": 56,
+      "decimals": 18
+    },
+    {
+      "name": "WalletNow",
+      "symbol": "WNOW",
+      "address": "0x56aa0237244c67b9a854b4efe8479cca0b105289",
+      "chainId": 56,
+      "decimals": 18
+    },
+    {
+      "name": "French connection finance",
+      "symbol": "FCF",
+      "address": "0x4673f018cc6d401aad0402bdbf2abcbf43dd69f3",
+      "chainId": 56,
+      "decimals": 18
+    },
+    {
+      "name": "Big League",
+      "symbol": "BGLG",
+      "address": "0xea01d8d9eacca9996db6bb3377c1fe64308e7328",
       "chainId": 56,
       "decimals": 18
     }

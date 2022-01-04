@@ -135,6 +135,7 @@ export default function Pool() {
           </CardBody>
         </AutoColumn>
       </AppBody>
+      <div style={{margin: '1%'}} />
     </>
   )
 }
